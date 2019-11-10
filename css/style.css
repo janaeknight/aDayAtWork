@@ -1,0 +1,10 @@
+body {
+    display: flex; flex-direction: column-reverse;
+    width: 95vw; height: 99vh; background-color: blueviolet;
+    font-size: 22px; color: snow; bottom: 0; overflow: hidden;
+    font-family: "Lucida Sans Typewriter", "Lucida Console",monaco, "Bitstream Vera Sans Mono", monospace;
+    /*padding-top: 15px; padding-left: 10px; padding-bottom: 14px;*/
+}
+
+.txt-green { color: #28B463; }
+
