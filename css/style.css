@@ -1,10 +1,22 @@
 body {
-    display: flex; flex-direction: column-reverse;
-    width: 95vw; height: 99vh; background-color: blueviolet;
+    display: flex; flex-direction: column;
+    width: 99vw; height: 99vh; background-color: blueviolet;
     font-size: 22px; color: snow; bottom: 0; overflow: hidden;
     font-family: "Lucida Sans Typewriter", "Lucida Console",monaco, "Bitstream Vera Sans Mono", monospace;
     /*padding-top: 15px; padding-left: 10px; padding-bottom: 14px;*/
 }
 
 .txt-green { color: #28B463; }
+.text {
+    width: inherit; height: 42px; background-color: greenyellow;
+    position: fixed; bottom: 0;
+}
+.text input {
+    width: 100%; height: 100%;
+    background-color: inherit; border: none;
+    font-size: 96px; 
+}
 
+/*
+    text-shadow: 2px 2px #D12F4D;
+*/
