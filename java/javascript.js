@@ -14,9 +14,10 @@ document.getElementById("textspeak").appendChild(start);
 
 var positive = ["yes", "y", "you bet", "yeehaw", "fuck yeah"];
 var negative = ["no","n", "fuck no"];
-var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep"];
+var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop"];
 
 let input = document.getElementById("input");
+
 let points = 0; let name = "";
 
 input.addEventListener("keyup", function(event) {
@@ -25,6 +26,7 @@ input.addEventListener("keyup", function(event) {
 
         if (points===0) {
             console.log("Progress: " +points, "/ 107");
+            // document.getElementById("input").innerHTML = "";
         }
 
     } else { event.preventDefault(); }
@@ -45,3 +47,20 @@ input.addEventListener("keyup", function(event) {
 
  // HAHAHAHAHAH ------>     PROMPT
                      //     The story is about an outgoing fire fighter, an introverted wanderer, and an electrician who is obsessed with a prostitute. It takes place in a city-sized magical device. The crux of the story involves a lecture.
+
+
+
+
+
+
+
+
+
+
+
+
+function blah() {
+    console.log("Hmmmmm");
+}
+
+setInterval(blah, 15000);
