@@ -25,7 +25,7 @@ input.addEventListener("keyup", function(event) {
     var positive = ["yes", "y", "you bet", "yeehaw", "fuck yeah", "alright"];
     var negative = ["no","n", "fuck no", "nope"];
     var passive = ["so", "ok", "okay","whatever", "cool", "nice", "k"];
-    var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake"];
+    var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];     
 
     function checkPositiveKey() {
         if ($.inArray(thisInput, positive) !=-1) {
@@ -79,6 +79,10 @@ input.addEventListener("keyup", function(event) {
             var protoPassiveMessage = defPass[Math.floor(Math.random()*defPass.length)];
             $('#textspeak').append("<span>"+protoPassiveMessage+"</span>");
         }
+    }
+
+    function checkActions() {
+        
     }
     // On.enter container
         // > doCommand()
