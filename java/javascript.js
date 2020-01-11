@@ -5,7 +5,7 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 // Of course you couldn't. 
 // Of course you weren't <i>really</i> wandering.
 
-//
+// Phantasmagoria
 
 // +thisInput, "is not a recognized command."
 
@@ -25,7 +25,24 @@ input.addEventListener("keyup", function(event) {
     var positive = ["yes", "y", "you bet", "yeehaw", "fuck yeah", "alright"];
     var negative = ["no","n", "fuck no", "nope"];
     var passive = ["so", "ok", "okay","whatever", "cool", "nice", "k"];
-    var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];     
+    var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];
+
+    /*switch (thisInput) {
+        case thisInput="":
+            $('#textspeak').append("<span></span>");
+            break;
+        case thisInput="":
+            $('#textspeak').append("<span></span>");
+            break;
+        case thisInput="":
+            $('#textspeak').append("<span></span>");
+            break;  
+        case thisInput="":
+            $('#textspeak').append("<span></span>");
+            break;
+        default:
+            break;
+    }*/
 
     function checkPositiveKey() {
         if ($.inArray(thisInput, positive) !=-1) {

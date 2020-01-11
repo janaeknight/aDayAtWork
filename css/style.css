@@ -10,14 +10,14 @@ body {
     width: 99vw; height: 99vh;
     background-color: var(--mainColor); color: var(--subColor);
     font-size: var(--fontSize); bottom: 0; overflow: hidden;
-    font-family: var(--fontMain);
+    font-family: var(--fontMain); margin-left: 0;
 }
 
 #taskbar {
-    display: flex; flex-direction: column;
-    width: 100vw; height: 36px; margin-left: -8px;
+    display: flex; flex-direction: row;
+    width: 100vw; height: 36px;
     background-color: var(--subColor); color: var(--mainColor);
-    margin-bottom: 8px;
+    position: absolute; top: 0;
 }
 #taskbar .tb-left { width: 45%; }
 #taskbar .tb-right { width: 55%; }
@@ -27,7 +27,7 @@ body {
 #textspeak {
     display: flex; flex-direction: column;
     width: 100%; height: 92%; font-weight: bold;
-    bottom: 36px; align-items: flex-start;
+    bottom: 36px; margin-left: 5px; margin-top: 38px;
 }
 #textspeak span {display: block; margin: 4px 0; }
 
