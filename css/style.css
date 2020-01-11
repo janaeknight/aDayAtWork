@@ -1,14 +1,22 @@
+:root {
+    --mainColor: #0000A8;
+    --subColor: #A8A8A8;
+    --fontSize: 18px;
+    --fontMain: "Lucida Sans Typewriter", "Lucida Console", "Bitstream Vera Sans Mono", monospace;
+}
+
 body {
     display: flex; flex-direction: column;
-    width: 99vw; height: 99vh; background-color: #0000A8;
-    font-size: 20px; color: #A8A8A8; bottom: 0; overflow: hidden;
-    font-family: "Lucida Sans Typewriter", "Lucida Console",monaco, "Bitstream Vera Sans Mono", monospace;
+    width: 99vw; height: 99vh;
+    background-color: var(--mainColor); color: var(--subColor);
+    font-size: var(--fontSize); bottom: 0; overflow: hidden;
+    font-family: var(--fontMain);
 }
 
 #taskbar {
     display: flex; flex-direction: column;
     width: 100vw; height: 36px; margin-left: -8px;
-    background-color: #A8A8A8; color: #0000A8;
+    background-color: var(--subColor); color: var(--mainColor);
     margin-bottom: 8px;
 }
 #taskbar .tb-left { width: 45%; }
@@ -27,17 +35,18 @@ body {
 
 .inputBox {
     width: 96vw; height: 36px; background-color: inherit;
-    position: fixed; left: 1px; bottom: 0; font-size: 22px;
+    position: fixed; left: 1px; bottom: 0; font-size: var(--fontSize);
 }
 .inputBox span { padding: 0 8px; }
 .inputBox input {
     width: 90%; height: inherit;
     background-color: inherit; border: none;
-    font-size: 22px; color: #A8A8A8;
-    font-family: "Lucida Sans Typewriter", "Lucida Console",monaco, "Bitstream Vera Sans Mono", monospace; font-weight: bold;
-}
-input:focus { outline: none; }
+    font-size: var(--fontSize); color: var(--subColor);
+    font-family: var(--fontMain); font-weight: bold;
+} input:focus { outline: none; }
 
 /*
     text-shadow: 2px 2px #D12F4D;
+
+    > crying volcano
 */
