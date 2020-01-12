@@ -28,6 +28,17 @@ input.addEventListener("keyup", function(event) {
     var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];
 
     /*switch (thisInput) {
+        case thisInput="help":
+            $('#textspeak').append("<span></span>");
+            break;
+        case thisInput="":
+            $('#textspeak').append("<span></span>");
+            break;
+        default:
+            break;
+    }*/
+
+    /*switch (thisInput) {
         case thisInput="":
             $('#textspeak').append("<span></span>");
             break;
