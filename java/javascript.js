@@ -28,71 +28,6 @@ input.addEventListener("keyup", function(event) {
     var passive = ["so", "ok", "okay","whatever", "cool", "nice", "k"];
     var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];
 
-    /*switch (thisInput) {
-        case thisInput="help":
-            $('#textspeak').append("<span></span>");
-            break;
-        case thisInput="":
-            $('#textspeak').append("<span></span>");
-            break;
-        default:
-            break;
-    }*/
-
-    function checkPositiveKey() {
-        if ($.inArray(thisInput, positive) !=-1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    function checkNegativeKey() {
-        if ($.inArray(thisInput, negative) !=-1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    function checkPassiveKey() {
-        if ($.inArray(thisInput, passive) !=-1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function defaultPositiveMessage() {
-        if (checkPositiveKey()) {
-            var defPos = [
-                "You sound quite positive.",
-                "You seem rather joyous.",
-                "You seem very sure."
-            ];
-            var protoPositiveMessage = defPos[Math.floor(Math.random()*defPos.length)];
-            $('#textspeak').append("<span>"+protoPositiveMessage+"</span>");
-        }
-    }
-    function defaultNegativeMessage() {
-        if (checkNegativeKey()) {
-            var defNeg = [
-                "You seem rather negative.",
-                "You don't seem sure."
-            ];
-            var protoNegativeMessage = defNeg[Math.floor(Math.random()*defNeg.length)];
-            $('#textspeak').append("<span>"+protoNegativeMessage+"</span>");
-        }
-    }
-    function defaultPassiveMessage() {
-        if (checkPassiveKey()) {
-            var defPass = [
-                "You seem very passive.",
-                "You seem nonchalant."
-            ];
-            var protoPassiveMessage = defPass[Math.floor(Math.random()*defPass.length)];
-            $('#textspeak').append("<span>"+protoPassiveMessage+"</span>");
-        }
-    }
-
     function checkActions() {
         
     }
@@ -170,9 +105,23 @@ input.addEventListener("keyup", function(event) {
             if (lucidity="awake") {
                 $('#textspeak').append("<span>You're already awake, silly.</span>");
             }
+        } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze")){
+            // stuff
+        } else if (thisInput.includes("walk")) {
+            // stuff
+        } else if (thisInput.includes("talk") || thisInput.includes("speak")) {
+            // stuff
+        } else if (thisInput.includes("listen")) {
+            // stuff
+        } else if (thisInput.includes("approach")) {
+            // stuff
+        } else if (thisInput.includes("grab") || thisInput.includes("pick")) {
+            // stuff
+        } else if (thisInput.includes("touch") || thisInput.includes("feel")) {
+            // stuff
         } else {
             if ( checkPositiveKey() || checkNegativeKey() || checkPassiveKey() ) { } else {
-                $('#textspeak').append('<span>"'+thisInput+ '" is not a command.</span>');
+                $('#textspeak').append("<span>What is " +thisInput+ "?</span>");
             }
         }
     }
