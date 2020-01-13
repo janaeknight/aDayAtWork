@@ -15,6 +15,7 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 var input = document.getElementById("input");
 
 let points = 0; let name = "";
+let alarm = "ringing"; let lucidity = "awake";
 
 input.addEventListener("keyup", function(event) {
 
@@ -31,23 +32,6 @@ input.addEventListener("keyup", function(event) {
         case thisInput="help":
             $('#textspeak').append("<span></span>");
             break;
-        case thisInput="":
-            $('#textspeak').append("<span></span>");
-            break;
-        default:
-            break;
-    }*/
-
-    /*switch (thisInput) {
-        case thisInput="":
-            $('#textspeak').append("<span></span>");
-            break;
-        case thisInput="":
-            $('#textspeak').append("<span></span>");
-            break;
-        case thisInput="":
-            $('#textspeak').append("<span></span>");
-            break;  
         case thisInput="":
             $('#textspeak').append("<span></span>");
             break;
@@ -118,16 +102,78 @@ input.addEventListener("keyup", function(event) {
 
     if (event.keyCode === 13) {
         $('#textspeak').append("<span>> " +thisInput+ "</span>");
-        checkPositiveKey(); checkNegativeKey(); checkPassiveKey();
-        doCommand();
+        doCommand(); $("input").val("");
     } else { event.preventDefault(); }
 
     // Game/Progress Container
 
     function doCommand() {
-        if (points === 0) {
-            defaultPositiveMessage(); defaultNegativeMessage();
-            defaultPassiveMessage()
+
+        function checkPositiveKey() {
+            if ($.inArray(thisInput, positive) !=-1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function checkNegativeKey() {
+            if ($.inArray(thisInput, negative) !=-1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function checkPassiveKey() {
+            if ($.inArray(thisInput, passive) !=-1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    
+        function defaultPositiveMessage() {
+            if (checkPositiveKey()) {
+                var defPos = [
+                    "You sound quite positive.",
+                    "You seem rather joyous.",
+                    "You seem very sure."
+                ];
+                var protoPositiveMessage = defPos[Math.floor(Math.random()*defPos.length)];
+                $('#textspeak').append("<span>"+protoPositiveMessage+"</span>");
+            }
+        }
+        function defaultNegativeMessage() {
+            if (checkNegativeKey()) {
+                var defNeg = [
+                    "You seem rather negative.",
+                    "You don't seem sure."
+                ];
+                var protoNegativeMessage = defNeg[Math.floor(Math.random()*defNeg.length)];
+                $('#textspeak').append("<span>"+protoNegativeMessage+"</span>");
+            }
+        }
+        function defaultPassiveMessage() {
+            if (checkPassiveKey()) {
+                var defPass = [
+                    "You seem very passive.",
+                    "You seem nonchalant."
+                ];
+                var protoPassiveMessage = defPass[Math.floor(Math.random()*defPass.length)];
+                $('#textspeak').append("<span>"+protoPassiveMessage+"</span>");
+            }
+        }
+
+        checkPositiveKey(); checkNegativeKey(); checkPassiveKey();
+        defaultPositiveMessage(); defaultNegativeMessage(); defaultPassiveMessage();
+
+        if (thisInput.includes("wake")) {
+            if (lucidity="awake") {
+                $('#textspeak').append("<span>You're already awake, silly.</span>");
+            }
+        } else {
+            if ( checkPositiveKey() || checkNegativeKey() || checkPassiveKey() ) { } else {
+                $('#textspeak').append('<span>"'+thisInput+ '" is not a command.</span>');
+            }
         }
     }
 });
