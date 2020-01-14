@@ -36,8 +36,12 @@ input.addEventListener("keyup", function(event) {
         // > printInput
 
     if (event.keyCode === 13) {
-        $('#textspeak').append("<span>> " +thisInput+ "</span>");
-        doCommand(); $("input").val("");
+        if (thisInput === "") {
+            // removes cmd line if input is nonexistent
+        } else {
+            $('#textspeak').append("<span>> " +thisInput+ "</span>");
+            doCommand(); $("input").val("");
+        }
     } else { event.preventDefault(); }
 
     // Game/Progress Container
@@ -105,6 +109,7 @@ input.addEventListener("keyup", function(event) {
             if (lucidity="awake") {
                 $('#textspeak').append("<span>You're already awake, silly.</span>");
             }
+            return;
         } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze") || thisInput.includes("scream")){
             if (alarm="ringing") {
                 if (thisInput.includes("turn off")) {
@@ -122,6 +127,7 @@ input.addEventListener("keyup", function(event) {
                     $('#textspeak').append("<span>You try screaming. Nothing happens.</span>");
                 }
             }
+            return;
         } else if (thisInput.includes("sleep")) {
             if (bed="in") {
                 if (alarm="snoozed") {
@@ -132,23 +138,49 @@ input.addEventListener("keyup", function(event) {
                     // game over - ending 1
                     // -----> You never left the bed.
                 }
-            } 
+            }
+            return;
         } else if (thisInput.includes("walk")) {
-            // stuff
+            if (alarm="ringing") {
+                $('#textspeak').append("<span>You need to get up to walk.</span>");
+            }
+            return;
         } else if (thisInput.includes("talk") || thisInput.includes("speak")) {
-            // stuff
+            if (alarm="ringing") {
+                $('#textspeak').append("<span>There's no point.</span>");
+            }
+            return;
         } else if (thisInput.includes("listen")) {
-            // stuff
+            if (alarm="ringing") {
+                $('#textspeak').append("<span>You're already listening to the alarm.</span>");
+            }
+            return;
         } else if (thisInput.includes("approach")) {
-            // stuff
+            return;
         } else if (thisInput.includes("grab") || thisInput.includes("pick")) {
-            // stuff
+            if (alarm="ringing") {
+                $('#textspeak').append("<span>You'd rather not.</span>");
+            }
+            return;
         } else if (thisInput.includes("touch") || thisInput.includes("feel")) {
-            // stuff
+            return;
+        } else if (thisInput==="help"){ 
+            var help = [
+                "Cheater cheater pumpkin eater.",
+                "Illegal Move.",
+                "What next, motherlode?",
+                "Do you really need help?",
+                "I don't have all the answers.",
+                "No way."
+            ];
+            var protoHelp = help[Math.floor(Math.random()*help.length)];
+            $('#textspeak').append("<span>"+protoHelp+"</span>");
+            return;  
         } else {
             if ( checkPositiveKey() || checkNegativeKey() || checkPassiveKey() ) { } else {
                 $('#textspeak').append('<span>What is "' +thisInput+ '"?</span>');
             }
+            return;
         }
     }
 });
