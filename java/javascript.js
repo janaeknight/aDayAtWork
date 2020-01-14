@@ -13,9 +13,9 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 // ?? What's your name, anyway?
 
 var input = document.getElementById("input");
-
-let points = 0; let name = "";
-let alarm = "ringing"; let lucidity = "awake";
+var points = 0; var name = "";
+var alarm = "ringing"; var lucidity = "awake";
+var bed = "in";
 
 input.addEventListener("keyup", function(event) {
 
@@ -43,7 +43,7 @@ input.addEventListener("keyup", function(event) {
     // Game/Progress Container
 
     function doCommand() {
-
+        
         function checkPositiveKey() {
             if ($.inArray(thisInput, positive) !=-1) {
                 return true;
@@ -105,8 +105,34 @@ input.addEventListener("keyup", function(event) {
             if (lucidity="awake") {
                 $('#textspeak').append("<span>You're already awake, silly.</span>");
             }
-        } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze")){
-            // stuff
+        } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze") || thisInput.includes("scream")){
+            if (alarm="ringing") {
+                if (thisInput.includes("turn off")) {
+                    $('#textspeak').append("<span></span>");
+                } else if (thisInput.includes("snooze")) {
+                    $('#textspeak').append("<span>You snooze the alarm.</span>");
+                    $('#textspeak').append("<span>Samantha tells you to get up.</span>");
+                    alarm = "snoozed";
+                    console.log(alarm)
+                } else if (thisInput.includes("")) {
+
+                } else if (thisInput.includes("")) {
+
+                } else if (thisInput.includes("scream")) {
+                    $('#textspeak').append("<span>You try screaming. Nothing happens.</span>");
+                }
+            }
+        } else if (thisInput.includes("sleep")) {
+            if (bed="in") {
+                if (alarm="snoozed") {
+                    $('#textspeak').append("<span>You fall asleep.</span>");
+                    $('#textspeak').append("<span>You wake back up because you snoozed the alarm.</span>");
+                    console.log("alarm");
+                } else {
+                    // game over - ending 1
+                    // -----> You never left the bed.
+                }
+            } 
         } else if (thisInput.includes("walk")) {
             // stuff
         } else if (thisInput.includes("talk") || thisInput.includes("speak")) {
@@ -121,14 +147,21 @@ input.addEventListener("keyup", function(event) {
             // stuff
         } else {
             if ( checkPositiveKey() || checkNegativeKey() || checkPassiveKey() ) { } else {
-                $('#textspeak').append("<span>What is " +thisInput+ "?</span>");
+                $('#textspeak').append('<span>What is "' +thisInput+ '"?</span>');
             }
         }
     }
 });
 
 
+/*
 
+if (lucidity="awake") {
+    $('#textspeak').append("<span></span>");
+}
+
+
+*/
 
 
 
