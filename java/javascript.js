@@ -11,6 +11,7 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 
 // For some reason, she couldn't remember your name.
 // ?? What's your name, anyway?
+// Godzilla on a respirator
 
 var input = document.getElementById("input");
 var points = 0; var name = "";
@@ -95,7 +96,8 @@ input.addEventListener("keyup", function(event) {
             if (checkPassiveKey()) {
                 var defPass = [
                     "You seem very passive.",
-                    "You seem nonchalant."
+                    "You seem nonchalant.",
+                    "You couldn't be less excited."
                 ];
                 var protoPassiveMessage = defPass[Math.floor(Math.random()*defPass.length)];
                 $('#textspeak').append("<span>"+protoPassiveMessage+"</span>");
