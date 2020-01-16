@@ -13,6 +13,10 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 // ?? What's your name, anyway?
 // Godzilla on a respirator
 
+function scrollDown() {
+    $('#textspeak').scrollTop(10000);
+}
+
 var input = document.getElementById("input");
 var points = 0; var name = "";
 var alarm = "ringing"; var lucidity = "awake";
@@ -41,7 +45,7 @@ input.addEventListener("keyup", function(event) {
             // removes cmd line if input is nonexistent
         } else {
             $('#textspeak').append("<span>> " +thisInput+ "</span>");
-            doCommand(); $("input").val("");
+            doCommand(); $("input").val(""); scrollDown();
         }
     } else { event.preventDefault(); }
 
