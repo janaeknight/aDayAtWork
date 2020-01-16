@@ -2,25 +2,20 @@
 $('#textspeak').append("<span>You hear beeping.</span>");
     // $('#textspeak').append("<span></span>");
 
-// Of course you couldn't. 
-// Of course you weren't <i>really</i> wandering.
-
 // Phantasmagoria
 
-// +thisInput, "is not a recognized command."
-
-// For some reason, she couldn't remember your name.
-// ?? What's your name, anyway?
 // Godzilla on a respirator
 
-function scrollDown() {
-    $('#textspeak').scrollTop(10000);
-}
+function autoAdjust() { $('#textspeak').scrollTop(10000); }
 
 var input = document.getElementById("input");
 var points = 0; var name = "";
-var alarm = "ringing"; var lucidity = "awake";
-var bed = "in";
+var alarm = "ringing";      // ringing // snoozed // off
+var lucidity = "awake";     // awake // asleep // drifting
+var bed = "in";             // in // out
+body = "dirty";             // dirty // clean
+teeth="caked";              // caked // brushed
+outside="none";      // first block // second block // office door /// none
 
 input.addEventListener("keyup", function(event) {
 
@@ -31,11 +26,7 @@ input.addEventListener("keyup", function(event) {
     var positive = ["yes", "y", "you bet", "yeehaw", "fuck yeah", "alright"];
     var negative = ["no","n", "fuck no", "nope"];
     var passive = ["so", "ok", "okay","whatever", "cool", "nice", "k"];
-    var actions = ["watch", "listen", "get", "scream", "talk", "approach", "walk", "grab", "touch", "feel", "snooze", "sleep", "stop", "smash", "wake", "pick"];
 
-    function checkActions() {
-        
-    }
     // On.enter container
         // > doCommand()
         // > printInput
@@ -45,7 +36,7 @@ input.addEventListener("keyup", function(event) {
             // removes cmd line if input is nonexistent
         } else {
             $('#textspeak').append("<span>> " +thisInput+ "</span>");
-            doCommand(); $("input").val(""); scrollDown();
+            doCommand(); $("input").val(""); autoAdjust();
         }
     } else { event.preventDefault(); }
 
@@ -114,61 +105,112 @@ input.addEventListener("keyup", function(event) {
         if (thisInput.includes("wake")) {
             if (lucidity="awake") {
                 $('#textspeak').append("<span>You're already awake, silly.</span>");
+                return;
             }
             return;
-        } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze") || thisInput.includes("scream")){
+        } else if (thisInput.includes("turn") || thisInput.includes("smash") || thisInput.includes("break") || thisInput.includes("snooze") || thisInput.includes("scream")) {
             if (alarm="ringing") {
                 if (thisInput.includes("turn off")) {
-                    $('#textspeak').append("<span></span>");
+                    $('#textspeak').append("<span>You turn off the alarm.</span>");
+                    $('#textspeak').append("<span>You should get ready for work.</span>");
+                    alarm = "off";
                 } else if (thisInput.includes("snooze")) {
                     $('#textspeak').append("<span>You snooze the alarm.</span>");
                     $('#textspeak').append("<span>Samantha tells you to get up.</span>");
                     alarm = "snoozed";
-                    console.log(alarm)
-                } else if (thisInput.includes("")) {
-
-                } else if (thisInput.includes("")) {
-
+                } else if (thisInput.includes("smash")) {
+                    $('#textspeak').append("<span>You reach over and try to punch Samantha.</span>");
+                    $('#textspeak').append("<span>She does not appreciate that.</span>");
+                } else if (thisInput.includes("break")) {
+                    $('#textspeak').append("<span>You try to push Samantha off the bed.</span>");
+                    $('#textspeak').append("<span>She's heavier than you thought.</span>");
                 } else if (thisInput.includes("scream")) {
                     $('#textspeak').append("<span>You try screaming. Nothing happens.</span>");
                 }
+                return;
             }
             return;
         } else if (thisInput.includes("sleep")) {
             if (bed="in") {
-                if (alarm="snoozed") {
+                if (alarm==="snoozed") {
                     $('#textspeak').append("<span>You fall asleep.</span>");
                     $('#textspeak').append("<span>You wake back up because you snoozed the alarm.</span>");
-                    console.log("alarm");
-                } else {
+                    alarm = "ringing";
+                    return;
+                } else if (alarm==="off") {
                     // game over - ending 1
                     // -----> You never left the bed.
+                    return;
+                } else {
+                    $('#textspeak').append("<span>The alarm tone is too annoying to ignore.</span>");
+                    return;
                 }
+            } else {
+                $('#textspeak').append("<span>You can't sleep here. -Your Back</span>");
+                return;
             }
             return;
         } else if (thisInput.includes("walk")) {
-            if (alarm="ringing") {
+            if (alarm==="ringing") {
                 $('#textspeak').append("<span>You need to get up to walk.</span>");
+                return;
+            }
+            return;
+        } else if (thisInput.includes("get")) {
+            if (bed==="in") {
+                if (alarm==="ringing") {
+                    $('#textspeak').append("<span>You can't get out of bed before turning off the alarm.</span>");
+                } else {
+                    $('#textspeak').append("<span>You stand up.</span>");
+                    bed = "out";
+                }
+                return;
+            };
+            if (bed==="out" && outside==="none" && (thisInput.includes("back") || thisInput.includes("bed"))) {
+                $('#textspeak').append("<span>You made too much of an effort to go back now.</span>");
+                return;
+            }
+            if (thisInput.includes("get ready")) {
+                $('#textspeak').append("<span>If only it were that easy.</span>");
+                return;
             }
             return;
         } else if (thisInput.includes("talk") || thisInput.includes("speak")) {
             if (alarm="ringing") {
                 $('#textspeak').append("<span>There's no point.</span>");
+                return;
             }
             return;
         } else if (thisInput.includes("listen")) {
             if (alarm="ringing") {
                 $('#textspeak').append("<span>You're already listening to the alarm.</span>");
+                return;
+            } else {
+                $('#textspeak').append("<span>There's nothing but a dull buzz. And everything else.</span>");
+                return;
             }
-            return;
         } else if (thisInput.includes("approach")) {
             return;
+        } else if (thisInput.includes("look")) {
+            if (bed==="in") {
+                $('#textspeak').append("<span>There's not much to see.</span>");
+                return;
+            } else if (bed==="out" && outside==="none") {
+                $('#textspeak').append("<span>A toothhbrush, a towel, and some slacks.</span>");
+                return;
+            }
+            return;
         } else if (thisInput.includes("grab") || thisInput.includes("pick")) {
-            if (alarm="ringing") {
+            if (alarm="ringing" && bed === "in") {
                 $('#textspeak').append("<span>You'd rather not.</span>");
+                return;
             }
             return;
         } else if (thisInput.includes("touch") || thisInput.includes("feel")) {
+            if (alarm==="ringing") {
+                $('#textspeak').append("<span>You'd rather not feel the feel of cold, hard metal first thing in the morning.</span>");
+                return;
+            }
             return;
         } else if (thisInput==="help"){ 
             var help = [
@@ -192,25 +234,6 @@ input.addEventListener("keyup", function(event) {
 });
 
 
-/*
-
-if (lucidity="awake") {
+/* if (lucidity="awake") {
     $('#textspeak').append("<span></span>");
-}
-
-
-*/
-
-
-
-/*** 
- * var start2 = document.createElement("span");
-        start2.innerHTML = ">  ";
-        document.getElementById("textspeak").appendChild(start2);
-        console.log(thisInput);
- * 
- * ***/
-
-
- // HAHAHAHAHAH ------>     PROMPT
-                     //     The story is about an outgoing fire fighter, an introverted wanderer, and an electrician who is obsessed with a prostitute. It takes place in a city-sized magical device. The crux of the story involves a lecture.
+} */
