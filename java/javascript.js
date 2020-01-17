@@ -6,6 +6,10 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 
 // Godzilla on a respirator
 
+/* if (lucidity="awake") {
+    $('#textspeak').append("<span></span>");
+} */
+
 function autoAdjust() { $('#textspeak').scrollTop(10000); }
 
 var input = document.getElementById("input");
@@ -232,8 +236,3 @@ input.addEventListener("keyup", function(event) {
         }
     }
 });
-
-
-/* if (lucidity="awake") {
-    $('#textspeak').append("<span></span>");
-} */
