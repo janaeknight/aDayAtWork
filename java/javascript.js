@@ -17,9 +17,9 @@ var points = 0; var name = "";
 var alarm = "ringing";      // ringing // snoozed // off
 var lucidity = "awake";     // awake // asleep // drifting
 var bed = "in";             // in // out
-body = "dirty";             // dirty // clean
-teeth="caked";              // caked // brushed
-outside="none";      // first block // second block // office door /// none
+var body = "dirty";             // dirty // clean
+var teeth="caked";              // caked // brushed
+var outside="none";      // first block // second block // office door /// none
 
 input.addEventListener("keyup", function(event) {
 
@@ -41,6 +41,12 @@ input.addEventListener("keyup", function(event) {
         } else {
             $('#textspeak').append("<span>> " +thisInput+ "</span>");
             doCommand(); $("input").val(""); autoAdjust();
+            console.log("Alarm: " +alarm,);
+            console.log("Bed: " +bed,);
+            console.log("Body: " +body,);
+            console.log("Teeth: " +teeth,);
+            console.log("Outside: " +outside,);
+            console.log("-----------------------------------------------");
         }
     } else { event.preventDefault(); }
 
@@ -162,9 +168,9 @@ input.addEventListener("keyup", function(event) {
             return;
         } else if (thisInput.includes("get")) {
             if (bed==="in") {
-                if (alarm==="ringing") {
+                if (alarm==="ringing" && (thisInput.includes("up")) || thisInput.includes("out")) {
                     $('#textspeak').append("<span>You can't get out of bed before turning off the alarm.</span>");
-                } else {
+                } else if (alarm==="off") {
                     $('#textspeak').append("<span>You stand up.</span>");
                     bed = "out";
                 }
@@ -174,9 +180,11 @@ input.addEventListener("keyup", function(event) {
                 $('#textspeak').append("<span>You made too much of an effort to go back now.</span>");
                 return;
             }
-            if (thisInput.includes("get ready")) {
-                $('#textspeak').append("<span>If only it were that easy.</span>");
-                return;
+            if (bed==="out" && outside==="none") {
+                if (thisInput.includes("get ready")) {
+                    $('#textspeak').append("<span>If only it were that easy.</span>");
+                    return;
+                }
             }
             return;
         } else if (thisInput.includes("talk") || thisInput.includes("speak")) {
