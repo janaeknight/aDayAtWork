@@ -8,7 +8,7 @@ $('#textspeak').append("<span>You hear beeping.</span>");
 
 /* if (lucidity="awake") {
     $('#textspeak').append("<span></span>");
-} */
+} */ 
 
 function autoAdjust() { $('#textspeak').scrollTop(10000); }
 
