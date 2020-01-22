@@ -124,18 +124,23 @@ input.addEventListener("keyup", function(event) {
                     $('#textspeak').append("<span>You turn off the alarm.</span>");
                     $('#textspeak').append("<span>You should get ready for work.</span>");
                     alarm = "off";
+                    return;
                 } else if (thisInput.includes("snooze")) {
                     $('#textspeak').append("<span>You snooze the alarm.</span>");
                     $('#textspeak').append("<span>Samantha tells you to get up.</span>");
                     alarm = "snoozed";
+                    return;
                 } else if (thisInput.includes("smash")) {
                     $('#textspeak').append("<span>You reach over and try to punch Samantha.</span>");
                     $('#textspeak').append("<span>She does not appreciate that.</span>");
+                    return;
                 } else if (thisInput.includes("break")) {
                     $('#textspeak').append("<span>You try to push Samantha off the bed.</span>");
                     $('#textspeak').append("<span>She's heavier than you thought.</span>");
+                    return;
                 } else if (thisInput.includes("scream")) {
                     $('#textspeak').append("<span>You try screaming. Nothing happens.</span>");
+                    return;
                 }
                 return;
             }
@@ -159,7 +164,6 @@ input.addEventListener("keyup", function(event) {
                 $('#textspeak').append("<span>You can't sleep here. -Your Back</span>");
                 return;
             }
-            return;
         } else if (thisInput.includes("walk")) {
             if (alarm==="ringing") {
                 $('#textspeak').append("<span>You need to get up to walk.</span>");
@@ -170,9 +174,11 @@ input.addEventListener("keyup", function(event) {
             if (bed==="in") {
                 if (alarm==="ringing" && (thisInput.includes("up")) || thisInput.includes("out")) {
                     $('#textspeak').append("<span>You can't get out of bed before turning off the alarm.</span>");
+                    return;
                 } else if (alarm==="off") {
                     $('#textspeak').append("<span>You stand up.</span>");
                     bed = "out";
+                    return;
                 }
                 return;
             };
