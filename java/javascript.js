@@ -222,6 +222,8 @@ input.addEventListener("keyup", function(event) {
             if (alarm="ringing" && bed === "in") {
                 $('#textspeak').append("<span>You'd rather not.</span>");
                 return;
+            } else if (alarm==="off" && bed==="out" && outside==="none") {
+                return;
             }
             return;
         } else if (thisInput.includes("touch") || thisInput.includes("feel")) {
