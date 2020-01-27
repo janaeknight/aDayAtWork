@@ -21,6 +21,9 @@ var body = "dirty";             // dirty // clean
 var teeth="caked";              // caked // brushed
 var outside="none";      // first block // second block // office door /// none
 
+var toothbrush = "none"; // none // in hand
+var slacks = "none"; // none // in hand
+
 input.addEventListener("keyup", function(event) {
 
     // Gets/Defines input
@@ -45,6 +48,7 @@ input.addEventListener("keyup", function(event) {
             console.log("Bed: " +bed,);
             console.log("Body: " +body,);
             console.log("Teeth: " +teeth,);
+            console.log("Toothbrush : " +toothbrush,);
             console.log("Outside: " +outside,);
             console.log("-----------------------------------------------");
         }
@@ -214,7 +218,7 @@ input.addEventListener("keyup", function(event) {
                 $('#textspeak').append("<span>There's not much to see.</span>");
                 return;
             } else if (bed==="out" && outside==="none") {
-                $('#textspeak').append("<span>A toothhbrush, a towel, and some slacks.</span>");
+                $('#textspeak').append("<span>A toothbrush, a towel, and some slacks.</span>");
                 return;
             }
             return;
@@ -223,6 +227,23 @@ input.addEventListener("keyup", function(event) {
                 $('#textspeak').append("<span>You'd rather not.</span>");
                 return;
             } else if (alarm==="off" && bed==="out" && outside==="none") {
+                if (thisInput.includes("brush")) {
+                    if (teeth==="caked") {
+                        if (toothbrush==="none") {
+                            $('#textspeak').append("<span>You pick up the toothbrush.</span>");
+                            return;
+                        } else if (toothbrush==="in hand") {
+                            $('#textspeak').append("<span>You're already holding the toothbrush. Maybe you should put it to use.</span>");
+                            return;
+                        }
+                        return;
+                    } else if (teeth==="brushed") {
+                        $('#textspeak').append("<span>No need. Your teeth are already clean.</span>");
+                        return;
+                    }
+                } else if (thisInput.includes("pants") || thisInput.includes("slacks")) {
+
+                }
                 return;
             }
             return;
@@ -232,6 +253,16 @@ input.addEventListener("keyup", function(event) {
                 return;
             }
             return;
+        } else if ( thisInput.includes("use") || thisInput.includes("brush") ) {
+            if (teeth==="caked") {
+                if (thisInput.includes("teeth") || (thisInput.includes("tooth") && thisInput.includes("brush"))) {
+                    $('textspeak').append("<span></span>");
+                    return;
+                }
+                return;
+            } else if (teeth==="brushed") {
+                $('textspeak').append("<span>ERROR 604. TEETH CLEAN.</span>");
+            }
         } else if (thisInput==="help"){ 
             var help = [
                 "Cheater cheater pumpkin eater.",
