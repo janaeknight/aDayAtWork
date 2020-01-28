@@ -194,6 +194,16 @@ input.addEventListener("keyup", function(event) {
                 if (thisInput.includes("get ready")) {
                     $('#textspeak').append("<span>If only it were that easy.</span>");
                     return;
+                } else if (thisInput.includes("in shower") || (thisInput.includes("in bath"))) {
+                    if (body==="dirty") {
+                        $('#textspeak').append("<span>You take a shower.</span>");
+                        body = "clean"
+                        return;
+                    } else if (body==="clean") {
+                        $('#textspeak').append("<span>You're already clean. Find something else to do.</span>");
+                        return;
+                    }
+                    return;
                 }
             }
             return;
@@ -256,7 +266,9 @@ input.addEventListener("keyup", function(event) {
         } else if ( thisInput.includes("use") || thisInput.includes("brush") ) {
             if (teeth==="caked") {
                 if (thisInput.includes("teeth") || (thisInput.includes("tooth") && thisInput.includes("brush"))) {
-                    $('textspeak').append("<span></span>");
+                    $('textspeak').append("<span>You brush your disgusting teeth.</span>");
+                    $('textspeak').append("<span>They aren't as disgusting now.</span>");
+                    teeth = "brushed";
                     return;
                 }
                 return;
