@@ -22,6 +22,12 @@ body {
 #taskbar .tb-left { width: 45%; }
 #taskbar .tb-right { width: 55%; }
 
+@media screen and (max-width: 600px) {
+    .body {
+        overflow-y: scroll;
+    }
+}
+
 /*-----------------------------------------------------------------------*/
 #ts-container {
     width: 100%; height: 100%;
